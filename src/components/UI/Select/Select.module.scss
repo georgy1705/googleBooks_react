@@ -1,0 +1,16 @@
+.Select {
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    select {
+        border: 1px solid #bebebe;
+        height: 29px;
+        width: 100px;
+        outline: none;
+        transition: all 300ms ease-in-out; 
+    }
+}
+
+.Select:first-child {
+    margin-right: 15px;
+}

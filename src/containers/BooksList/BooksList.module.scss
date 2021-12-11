@@ -1,0 +1,14 @@
+.BooksList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.imgBook {
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+}
+

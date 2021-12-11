@@ -1,0 +1,23 @@
+.Layout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    header {
+        height: 35vh;
+        width: 100%;
+        background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), no-repeat, center/100%, url("https://img4.goodfon.ru/wallpaper/nbig/c/b3/kniga-makro-fon-4.jpg");
+        background-position-y: 70%;
+        background-size: 100%;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    main h1 {
+        text-align: center;
+    }
+}

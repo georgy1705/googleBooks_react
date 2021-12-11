@@ -1,0 +1,32 @@
+.InputSearch {
+    
+    form {
+        position: relative;
+        width: 300px;
+        margin: 0 auto;
+    }
+    input, button {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        background: white;
+        border-radius: 30px;
+        height: 36px;
+    }
+    input {
+        width: 100%;
+        padding-left: 15px;
+    }
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 42px;
+        cursor: pointer;
+    }
+    button:before {
+        font-size: 16px;
+        color: black;
+    }
+}
+
