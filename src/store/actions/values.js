@@ -1,5 +1,5 @@
 import { CATEGORY_VALUE, SEARCH_VALUE, SORT_VALUE } from "./actionTypes"
-import { fetchBooksError, fetchBooksSuccess } from "./book";
+import { fetchBooksError, fetchBooksSuccess, loadingStart } from "./book";
 import axios from "axios";
 
 export function selectCategoryChangeHandler(val) {
@@ -17,19 +17,19 @@ export function selectSortChangeHandler(val) {
 }
 
 export function searchChangeHandler(val) {
-    console.log(val);
+
     return {
         type: SEARCH_VALUE,
         searchValue: val,
     }
 }
 
-export function resultSearch(e) {
-    // e.preventDefault()
+export function resultSearch() {
 
     return async (dispatch, getState) => {
+        dispatch(loadingStart())
         
-        let url = `https://www.googleapis.com/books/v1/volumes?q=js&projection=full&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        let url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
         console.log(url);
         console.log(getState().result.rightSort);
         try {
@@ -43,3 +43,4 @@ export function resultSearch(e) {
         }
     }
 }
+

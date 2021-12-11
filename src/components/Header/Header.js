@@ -21,7 +21,6 @@ class Header extends Component {
                 <InputSearch
                     onSubmit={e => this.props.resultSearch(e)} 
                     onChange={e => this.props.searchChangeHandler(e.target.value)} 
-                    onClick={e => this.props.resultSearch(e)}
                 />
                 <div className={classes.Filter}>
                     <Select

@@ -12,7 +12,7 @@ const InputSearch = props => {
                 <Formsy onSubmit={props.onSubmit}>
                     <label htmlFor={htmlFor}></label>
                     <input type="text" onChange={props.onChange}/>
-                    <button onClick={props.onClick} type="submit" className="fas fa-search"></button>
+                    <button type="submit" className="fas fa-search"></button>
                 </Formsy>
             </div>
             

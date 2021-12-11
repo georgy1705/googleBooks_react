@@ -1,4 +1,4 @@
-import { FETCH_BOOKS_SUCCESS } from "../actions/actionTypes"
+import { FETCH_BOOKS_SUCCESS, START_LOADING } from "../actions/actionTypes"
 import { FETCH_BOOKS_ERROR } from "../actions/actionTypes"
 
 
@@ -18,6 +18,10 @@ export default function bookReducer(state = initialState, action) {
         case FETCH_BOOKS_SUCCESS:
             return {
                 ...state, loading: false, books: action.books
+            }
+        case START_LOADING:
+            return {
+                ...state, loading: true
             }
         default:
             return state
