@@ -20,7 +20,7 @@ export default function bookReducer(state = initialState, action) {
             }
         case FETCH_BOOKS_SUCCESS:
             return {
-                ...state, loading: false, books: action.books, totalItems: action.totalItems
+                ...state, loading: false, books: action.books, totalItems: action.totalItems, stepPaginate: 0
             }
         case FETCH_BOOKS_LOAD:
             return {

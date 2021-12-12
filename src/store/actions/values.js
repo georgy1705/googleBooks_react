@@ -28,8 +28,14 @@ export function resultSearch() {
 
     return async (dispatch, getState) => {
         dispatch(loadingStart())
-        
-        let url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&maxResults=30&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        let url = ''
+
+        if (getState().result.rightCategory === 'all') {
+            url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}&maxResults=30&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        } else {
+            url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&maxResults=30&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        }
+       
         console.log(url);
         console.log(getState().result.rightSort);
         try {
@@ -49,8 +55,14 @@ export function resultLoadMore() {
 
     return async (dispatch, getState) => {
         dispatch(loadingStart())
+        let url = ''
         
-        let url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&maxResults=30&startIndex=${getState().books.stepPaginate}&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        if (getState().result.rightCategory === 'all') {
+            url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}&maxResults=30&startIndex=${getState().books.stepPaginate}&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        } else {
+            url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&maxResults=30&startIndex=${getState().books.stepPaginate}&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
+        }
+        
         console.log(url);
         console.log(getState().result.rightSort);
         try {
