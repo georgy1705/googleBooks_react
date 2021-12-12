@@ -1,4 +1,4 @@
-import { FETCH_BOOKS_SUCCESS, START_LOADING } from "../actions/actionTypes"
+import { FETCH_BOOKS_LOAD, FETCH_BOOKS_SUCCESS, PAGINATE, START_LOADING } from "../actions/actionTypes"
 import { FETCH_BOOKS_ERROR } from "../actions/actionTypes"
 
 
@@ -6,7 +6,10 @@ const initialState = {
     books: [],
     apiKey: 'AIzaSyDd5yviImWSlRzjbyvr-qhUwLL5M7jHfNc',
     error: null,
-    loading: false
+    loading: false,
+    stepPaginate: 0,
+    totalItems: 0,
+    fetchBooks: null
 }
 
 export default function bookReducer(state = initialState, action) {
@@ -17,11 +20,19 @@ export default function bookReducer(state = initialState, action) {
             }
         case FETCH_BOOKS_SUCCESS:
             return {
+                ...state, loading: false, books: action.books, totalItems: action.totalItems
+            }
+        case FETCH_BOOKS_LOAD:
+            return {
                 ...state, loading: false, books: action.books
             }
         case START_LOADING:
             return {
                 ...state, loading: true
+            }
+        case PAGINATE:
+            return {
+                ...state, stepPaginate: action.stepPaginate
             }
         default:
             return state

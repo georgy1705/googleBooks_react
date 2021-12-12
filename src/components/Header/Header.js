@@ -19,7 +19,7 @@ class Header extends Component {
             <div className={classes.Header}>
                 <h1>Search for books</h1>
                 <InputSearch
-                    onSubmit={e => this.props.resultSearch(e)} 
+                    onSubmit={e => this.props.resultSearch()} 
                     onChange={e => this.props.searchChangeHandler(e.target.value)} 
                 />
                 <div className={classes.Filter}>
@@ -66,7 +66,7 @@ function mapDispatchToProps(dispatch) {
         selectSortChangeHandler: val => dispatch(selectSortChangeHandler(val)),
         selectCategoryChangeHandler: val => dispatch(selectCategoryChangeHandler(val)),
         searchChangeHandler: val => dispatch(searchChangeHandler(val)),
-        resultSearch: (e) => dispatch(resultSearch(e))
+        resultSearch: () => dispatch(resultSearch())
     }
 }
 

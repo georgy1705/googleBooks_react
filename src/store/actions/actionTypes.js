@@ -6,3 +6,6 @@ export const SORT_VALUE = 'SORT_VALUE'
 export const SEARCH_VALUE = 'SEARCH_VALUE'
 
 export const START_LOADING = 'START_LOADING'
+
+export const PAGINATE = 'PAGINATE'
+export const FETCH_BOOKS_LOAD = 'FETCH_BOOKS_LOAD'
