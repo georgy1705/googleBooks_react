@@ -3,6 +3,7 @@ import classes from './BooksList.module.scss'
 import { connect } from "react-redux";
 import { Loader } from "../../components/UI/Loader/Loader";
 import { fetchBooks, paginate } from "../../store/actions/book";
+import { NavLink } from "react-router-dom";
 
 
 class BooksList extends Component {
@@ -28,11 +29,11 @@ class BooksList extends Component {
                 this.renderBooks()
                 return (
                         (this.props.books && this.props.books.length !== 0 && this.props.books.length === 30)  && !this.props.loading ?
-                            <button className="btn btn-success" style={{
-                                position: 'relative',
+                            <button className="btn btn-outline-secondary" style={{
+                                
                                 marginTop: 35, 
                                 marginBottom: 40, 
-                                left:'50%'
+                                width: 200,
                             }} 
                                 onClick={e => this.handleClick(e)}
                             >
@@ -45,25 +46,28 @@ class BooksList extends Component {
     }
 
     renderBooks = () => {
-        console.log(this.props.books);
 
         if (this.props.books !== undefined) {
             return this.props.books.map((book, i) => {
                 return (
-                    <div className="card" style={{marginTop: 40, width: 350, margin: '15px 10px'}} key={i}>
-                        <img 
-                            className={"card-img-top " + classes.imgBook} 
-                            src={book.volumeInfo.imageLinks === undefined ? "" : `${book.volumeInfo.imageLinks.thumbnail}`}
-                            alt={book.title}
-                        />
-                        <div className="card-body">
-                            <p className="card-text" style={{color: 'gray'}}><u>{book.volumeInfo.categories || "Not Found"}</u></p>
-                            <p className="card-text"><b>{book.volumeInfo.title || "Not Found"}</b></p>
-                            <p className="card-text" style={{color: 'gray'}}>{book.volumeInfo.authors ?
-                            book.volumeInfo.authors.join(', ') :
-                            "Not Found"}</p>
+                    <NavLink to={'/book/' + book.id} key={i} className={"card " + classes.cardBook}>
+                        <div>
+                            <img 
+                                className={"card-img-top " + classes.imgBook} 
+                                src={book.volumeInfo.imageLinks === undefined ? "" : `${book.volumeInfo.imageLinks.thumbnail}`}
+                                alt={book.title}
+                            />
+                            <div className="card-body">
+                                <p className="card-text" style={{color: 'gray'}}><u>{book.volumeInfo.categories || "Not Found"}</u></p>
+                                <p className="card-text" style={{color: 'black'}}><b>{book.volumeInfo.title || "Not Found"}</b></p>
+                                <p className="card-text" style={{color: 'gray'}}>{book.volumeInfo.authors ?
+                                book.volumeInfo.authors.join(', ') :
+                                "Not Found"}</p>
+                            </div>
                         </div>
-                    </div>
+                    </NavLink>
+                    
+                    
                 )    
         })
     }   else {
@@ -88,7 +92,7 @@ class BooksList extends Component {
         return ( 
                 this.props.loading || this.props.books === [] ?
                 <Loader /> : 
-                <div>
+                <div style={{textAlign: 'center'}}>
                     {this.numberResults()}
                     <div className={classes.BooksList}>
                         {

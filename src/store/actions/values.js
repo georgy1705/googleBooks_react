@@ -2,6 +2,7 @@ import { CATEGORY_VALUE, SEARCH_VALUE, SORT_VALUE } from "./actionTypes"
 import { fetchBooksError, fetchBooksLoad, fetchBooksSuccess, loadingStart } from "./book";
 import axios from "axios";
 
+
 export function selectCategoryChangeHandler(val) {
     return {
         type: CATEGORY_VALUE,
@@ -25,7 +26,7 @@ export function searchChangeHandler(val) {
 }
 
 export function resultSearch() {
-
+    
     return async (dispatch, getState) => {
         dispatch(loadingStart())
         let url = ''
@@ -36,8 +37,6 @@ export function resultSearch() {
             url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&maxResults=30&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
         }
        
-        console.log(url);
-        console.log(getState().result.rightSort);
         try {
             const response = await axios.get(url)
             const book = response.data.items
@@ -63,8 +62,7 @@ export function resultLoadMore() {
             url = `https://www.googleapis.com/books/v1/volumes?q=${getState().result.searchValue}+subject:${getState().result.rightCategory}&maxResults=30&startIndex=${getState().books.stepPaginate}&orderBy=${getState().result.rightSort}&key=${getState().books.apiKey}`
         }
         
-        console.log(url);
-        console.log(getState().result.rightSort);
+
         try {
             const response = await axios.get(url)
             const book = response.data.items
